@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zyd.store.mapper.ShapeCategoryMapper" > 
+
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="org.zyd.store.entity.ShapeCategoryEntity" >
+	<result column="category_id" property="categoryId" jdbcType="INTEGER" />
+	<result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+	<result column="introduction" property="introduction" jdbcType="VARCHAR" />
+	<result column="is_valid" property="isValid" jdbcType="INTEGER" />
+	<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	<result column="create_by" property="createBy" jdbcType="VARCHAR" />
+	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	<result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+</resultMap>
+       
+<!-- shape_category table all fields -->
+<sql id="Base_Column_List" >
+	 category_id, category_name, introduction, is_valid, create_time, create_by, update_time, update_by
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="categoryId != null" >
+	    and category_id = #{categoryId, jdbcType=INTEGER}
+	</if>
+	 	<if test="categoryName != null and categoryName != ''" >
+	    and category_name = #{categoryName, jdbcType=VARCHAR}
+	</if>
+	 	<if test="introduction != null and introduction != ''" >
+	    and introduction = #{introduction, jdbcType=VARCHAR}
+	</if>
+	<if test="isValid != null" >
+	    and is_valid = #{isValid, jdbcType=INTEGER}
+	</if>
+	<if test="createTime != null" >
+	    and create_time = #{createTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="createBy != null and createBy != ''" >
+	    and create_by = #{createBy, jdbcType=VARCHAR}
+	</if>
+	<if test="updateTime != null" >
+	    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="updateBy != null and updateBy != ''" >
+	    and update_by = #{updateBy, jdbcType=VARCHAR}
+	</if>
+</trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="org.zyd.store.entity.ShapeCategoryEntity" >
+  	insert into shape_category(
+		category_id,
+		category_name,
+		introduction,
+		is_valid,
+		create_time,
+		create_by,
+		update_time,
+		update_by
+	) values (
+		#{categoryId, jdbcType=INTEGER},
+		#{categoryName, jdbcType=VARCHAR},
+		#{introduction, jdbcType=VARCHAR},
+		#{isValid, jdbcType=INTEGER},
+		#{createTime, jdbcType=TIMESTAMP},
+		#{createBy, jdbcType=VARCHAR},
+		#{updateTime, jdbcType=TIMESTAMP},
+		#{updateBy, jdbcType=VARCHAR}
+	)
+</insert>
+
+<!-- 根据所选内容更新 -->
+<update id="updateBySelective" parameterType="org.zyd.store.entity.ShapeCategoryEntity" >
+	update shape_category set 
+	<trim  suffixOverrides="," >
+		<if test="categoryName != null  and categoryName != '' ">
+			category_name = #{categoryName, jdbcType=VARCHAR},
+		</if>
+		<if test="introduction != null  and introduction != '' ">
+			introduction = #{introduction, jdbcType=VARCHAR},
+		</if>
+		<if test="isValid != null  ">
+			is_valid = #{isValid, jdbcType=INTEGER},
+		</if>
+		<if test="createTime != null  ">
+			create_time = #{createTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="createBy != null  and createBy != '' ">
+			create_by = #{createBy, jdbcType=VARCHAR},
+		</if>
+		<if test="updateTime != null  ">
+			update_time = #{updateTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="updateBy != null  and updateBy != '' ">
+			update_by = #{updateBy, jdbcType=VARCHAR},
+		</if>
+	</trim> 
+	where category_id = #{categoryId, jdbcType=INTEGER}
+</update>
+
+<!-- 删除 -->
+<update id="delete" parameterType="org.zyd.store.entity.ShapeCategoryEntity">
+	delete from shape_category where category_id = #{categoryId}
+</update>
+
+<!-- 查询 -->
+<select id="select" resultMap="BaseResultMap"  parameterType="org.zyd.store.term.ShapeCategoryTerm">
+	select 
+    <include refid="Base_Column_List"/>
+    from shape_category 
+    <include refid="Where_Clause"/>
+</select>
+  	
+</mapper>   

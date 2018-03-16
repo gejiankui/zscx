@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    
+	<context:component-scan base-package="web" />
+	
+	<bean name="/UserInf"
+        class="org.springframework.remoting.caucho.HessianServiceExporter">
+        <property name="serializerFactory" ref="serializerFactory" />
+        <property name="service" ref="userInf" />
+        <property name="serviceInterface" value="org.zyd.service.inf.UserInf" />
+    </bean>
+
+    <bean name="/GeneralizeInf"
+          class="org.springframework.remoting.caucho.HessianServiceExporter">
+        <property name="serializerFactory" ref="serializerFactory" />
+        <property name="service" ref="generalizeInf" />
+        <property name="serviceInterface" value="org.zyd.service.inf.GeneralizeInf" />
+    </bean>
+
+    <bean name="/PugInf"
+          class="org.springframework.remoting.caucho.HessianServiceExporter">
+        <property name="serializerFactory" ref="serializerFactory" />
+        <property name="service" ref="pugInf" />
+        <property name="serviceInterface" value="org.zyd.service.inf.PugInf" />
+    </bean>
+
+    <bean name="/ShapeInf"
+          class="org.springframework.remoting.caucho.HessianServiceExporter">
+        <property name="serializerFactory" ref="serializerFactory" />
+        <property name="service" ref="shapeInf" />
+        <property name="serviceInterface" value="org.zyd.service.inf.ShapeInf" />
+    </bean>
+
+    <bean name="/CarouselFigureInf"
+          class="org.springframework.remoting.caucho.HessianServiceExporter">
+        <property name="serializerFactory" ref="serializerFactory" />
+        <property name="service" ref="carouselFigureInf" />
+        <property name="serviceInterface" value="org.zyd.service.inf.CarouselFigureInf" />
+    </bean>
+
+    <bean name="/WeixinReplyContentInf"
+          class="org.springframework.remoting.caucho.HessianServiceExporter">
+        <property name="serializerFactory" ref="serializerFactory" />
+        <property name="service" ref="weixinReplyContentInf" />
+        <property name="serviceInterface" value="org.zyd.service.inf.WeixinReplyContentInf" />
+    </bean>
+    <bean id="serializerFactory" class="org.zyd.appserver.util.SerializerFactory" />
+	
+</beans>

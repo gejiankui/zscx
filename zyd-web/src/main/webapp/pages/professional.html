@@ -1,0 +1,168 @@
+<!doctype html>
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<title>艺人查询</title>
+<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="js/professional.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/underscore.js"></script>
+<script type="text/javascript" >
+    function clearsword() {
+        $("#sword").val('');
+    }
+    function hideOrHideCover(_this) {
+        $(".window_02").hide();
+    }
+
+    function toindex() {
+        window.location.href = "index.html";
+    }
+    $(function () {
+        $('#openBar').click(function () {
+            $('.bar-mask').show();
+            $('.bar-info').addClass('show');
+        });
+        $('#closeBarBtn').click(function () {
+            $('.bar-mask').hide();
+            $('.bar-info').remove('show');
+        });
+    })
+</script>
+
+<script id="generalizeRlt" type="text/underscroe-tmpl">
+<% _.each(list, function(item, index) { %>
+    <li onClick="todetail(<%= item.userId%>)">
+        <% if (index > 2) {%>
+        <span class="c04"><%= index + 1%></span>
+        <%} else {%>
+        <span class="c0<%= index + 1%>"><%= index + 1%></span>
+        <%}%>
+        <p><%= item.userName%></p>
+        <div class="clear"></div>
+    </li>
+<% }) %>
+</script>
+<script id="searchRlt" type="text/underscroe-tmpl">
+    <div class="find_title">
+    	<span class="cc25">搜索结果</span>
+        <span class="line_small"></span>
+        <span class="c25">SEARCH RESULT</span>
+        <span class="c27" style="float:right">条</span>
+        <span class="c26" style="float:right"><%= list.length%></span>
+        <span class="c27" style="float:right">共</span>
+        <div class="clear"></div>
+    </div>
+    <% _.each(list, function(item) { %>
+	<div class="list_person" onClick="todetail(<%= item.userId%>)">
+    	<div class="toux"><img onerror="this.src='images/pic_per02.jpg'" src="images/user/<%= item.userSmallImg%>"></div>
+        <div class="det_per"></div>
+        <div class="name_find">
+        	<span class="c29"><%= item.userName%></span>
+            <!-- <span class="c28"><%= item.gender%></span> -->
+            <div class="c30">
+				<% if (item.gender == '男') { %>
+                <img class="" src="images/man.png" />
+                <%} else if (item.gender == '女') {%>
+                <img class="" src="images/female.png" />
+                <%}%>
+            	<span><%= item.birthday%></span>
+            </div>
+            <% if (item.jobTitle == null || item.jobTitle == '') { %>
+                <span class="c28">&nbsp;</span>
+			<%} else {%>
+			    <span class="c28"><%= item.jobTitle%></span>
+            <%}%>
+            <div class="write"><%= item.introduction%></div>
+        </div>
+        <!-- <div class="line_tip"></div> -->
+        <div class="tip">
+            <% if (item.labelInfoDtos != null && item.labelInfoDtos.length > 0) { %>
+            <% _.each(item.labelInfoDtos, function(label) { %>
+        	    <div class="right_02"><%= label.labelName%></div>
+            <% }) %>
+            <div class="clear"></div>
+            <%}%>
+        </div>
+    </div>
+    <% }) %>
+</script>
+</head>
+
+<body>
+<!--搜索-->
+<div class="tou"  onclick="hideOrHideCover(this);"></div>
+<div class="find_03">
+	<img class="pic_02" src="images/icon.png" />
+    <form action="" class="input-kw-form">
+    <input type="search" id="sword" autocomplete="off" onsearch="search();" onclick="initGeneralize();" placeholder="搜索紫砂艺人  姓名/姓氏/字母">
+    </form>
+    <img onClick="clearsword()" class="close02" src="images/close02.png" />
+    <div class="clear"></div>
+</div>
+<div class="line_kb"></div>
+<ul class="window_02" style="display:none;">
+</ul>
+<!--搜索结束-->
+
+<div class="list_find">
+</div>
+<div style="margin-top:-1.6%;background-color:#fff; display: none" id="writeBlock">&nbsp;</div>
+<div style="height:3.4rem">&nbsp;</div>
+<div class="btn_03">
+    <div class="index_l" onClick="toindex()">
+        <img class="c17" src="images/index.png" />
+        <span class="c23">首页</span>
+    </div>
+    <div class="add_r" id="openBar">
+        <img class="c17" src="images/qr_code.png" />
+        <span class="c23">点击关注公众号</span>
+    </div>
+    <div class="clear"></div>
+</div>
+<!-- 弹出二维码 -->
+<div class="bar-mask">
+    <div class="bar-info">
+        <div style="background-color:#f9f9f9;padding:3.5%;">
+            <header class="bar-header">
+                <img class="wechat_icon" src="images/icon_wechat.svg">
+                <span style="vertical-align: middle">微信公众平台服务号</span>
+                <img id="closeBarBtn" class="close_icon" src="images/icon_close.svg" style="float: right;padding-right:5px;">
+            </header>
+        </div>
+        <section class="bar-container" style="margin-top: 15%;margin-bottom: 12%;">
+            <header style="text-align: center;color: #a5a5a5">识别关注紫砂查询服务号</header>
+            <section style="width: 70%;margin: 6% auto;text-align: center">
+                <img src="images/qr_code.jpeg" style="width: 80%;">
+            </section>
+            <footer>
+                <div class="active">紫砂信息大数据平台</div>
+                <!-- <div>客服二维码</div> -->
+            </footer>
+        </section>
+        <footer class="bar-footer">
+            紫砂爱好者的四库全书
+        </footer>
+    </div>
+</div>
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript"></script>
+<script type="text/javascript">
+    wx.ready(function () {
+        var sdata = {
+            title: '紫砂查询|艺人查询',
+            desc: '输入姓名、姓氏、全拼、字母进行查询',
+            link: location.href,
+            imgUrl: 'http://m.zishachaxun.com/pug/logo.jpg'
+        };
+        wx.onMenuShareTimeline(sdata);
+        wx.onMenuShareAppMessage(sdata);
+    })
+</script>
+</body>
+</html>

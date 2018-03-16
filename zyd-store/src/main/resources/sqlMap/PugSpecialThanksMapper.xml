@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zyd.store.mapper.PugSpecialThanksMapper" > 
+
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="org.zyd.store.entity.PugSpecialThanksEntity" >
+	<result column="pug_id" property="pugId" jdbcType="INTEGER" />
+	<result column="user_id" property="userId" jdbcType="INTEGER" />
+	<result column="is_valid" property="isValid" jdbcType="INTEGER" />
+	<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	<result column="create_by" property="createBy" jdbcType="VARCHAR" />
+	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	<result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+</resultMap>
+       
+<!-- pug_special_thanks table all fields -->
+<sql id="Base_Column_List" >
+	 pug_id, user_id, is_valid, create_time, create_by, update_time, update_by
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="pugId != null" >
+	    and pug_id = #{pugId, jdbcType=INTEGER}
+	</if>
+	<if test="userId != null" >
+	    and user_id = #{userId, jdbcType=INTEGER}
+	</if>
+	<if test="isValid != null" >
+	    and is_valid = #{isValid, jdbcType=INTEGER}
+	</if>
+	<if test="createTime != null" >
+	    and create_time = #{createTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="createBy != null and createBy != ''" >
+	    and create_by = #{createBy, jdbcType=VARCHAR}
+	</if>
+	<if test="updateTime != null" >
+	    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="updateBy != null and updateBy != ''" >
+	    and update_by = #{updateBy, jdbcType=VARCHAR}
+	</if>
+</trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="org.zyd.store.entity.PugSpecialThanksEntity" >
+  	insert into pug_special_thanks(
+		pug_id,
+		user_id,
+		is_valid,
+		create_time,
+		create_by,
+		update_time,
+		update_by
+	) values (
+		#{pugId, jdbcType=INTEGER},
+		#{userId, jdbcType=INTEGER},
+		#{isValid, jdbcType=INTEGER},
+		#{createTime, jdbcType=TIMESTAMP},
+		#{createBy, jdbcType=VARCHAR},
+		#{updateTime, jdbcType=TIMESTAMP},
+		#{updateBy, jdbcType=VARCHAR}
+	)
+</insert>
+
+<!-- 根据所选内容更新 -->
+<update id="updateBySelective" parameterType="org.zyd.store.entity.PugSpecialThanksEntity" >
+	update pug_special_thanks set 
+	<trim  suffixOverrides="," >
+		<if test="userId != null  ">
+			user_id = #{userId, jdbcType=INTEGER},
+		</if>
+		<if test="isValid != null  ">
+			is_valid = #{isValid, jdbcType=INTEGER},
+		</if>
+		<if test="createTime != null  ">
+			create_time = #{createTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="createBy != null  and createBy != '' ">
+			create_by = #{createBy, jdbcType=VARCHAR},
+		</if>
+		<if test="updateTime != null  ">
+			update_time = #{updateTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="updateBy != null  and updateBy != '' ">
+			update_by = #{updateBy, jdbcType=VARCHAR},
+		</if>
+	</trim> 
+	where pug_id = #{pugId, jdbcType=INTEGER}
+</update>
+
+<!-- 删除 -->
+<update id="delete" parameterType="org.zyd.store.entity.PugSpecialThanksEntity">
+	delete from pug_special_thanks where pug_id = #{pugId}
+</update>
+
+<!-- 查询 -->
+<select id="select" resultMap="BaseResultMap"  parameterType="org.zyd.store.term.PugSpecialThanksTerm">
+	select 
+    <include refid="Base_Column_List"/>
+    from pug_special_thanks 
+    <include refid="Where_Clause"/>
+</select>
+  	
+</mapper>   

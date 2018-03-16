@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/zyd-appserver/zyd-appserver.iml" filepath="$PROJECT_DIR$/zyd-appserver/zyd-appserver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zyd-common/zyd-common.iml" filepath="$PROJECT_DIR$/zyd-common/zyd-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zyd-domain/zyd-domain.iml" filepath="$PROJECT_DIR$/zyd-domain/zyd-domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zyd-parent.iml" filepath="$PROJECT_DIR$/zyd-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zyd-service/zyd-service.iml" filepath="$PROJECT_DIR$/zyd-service/zyd-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zyd-service-impl/zyd-service-impl.iml" filepath="$PROJECT_DIR$/zyd-service-impl/zyd-service-impl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zyd-store/zyd-store.iml" filepath="$PROJECT_DIR$/zyd-store/zyd-store.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zyd-web/zyd-web.iml" filepath="$PROJECT_DIR$/zyd-web/zyd-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zyd-webadmin/zyd-webadmin.iml" filepath="$PROJECT_DIR$/zyd-webadmin/zyd-webadmin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zyd-weixinapi/zyd-weixinapi.iml" filepath="$PROJECT_DIR$/zyd-weixinapi/zyd-weixinapi.iml" />
+    </modules>
+  </component>
+</project>

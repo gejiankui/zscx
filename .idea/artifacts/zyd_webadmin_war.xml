@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="zyd-webadmin:war">
+    <output-path>$PROJECT_DIR$/zyd-webadmin/target</output-path>
+    <root id="archive" name="zyd-webadmin.war">
+      <element id="artifact" artifact-name="zyd-webadmin:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,16 @@
+<decorators defaultdir="/WEB-INF/views/decorators">
+	<!-- Any urls that are excluded will never be decorated by Sitemesh -->
+	<excludes>
+        <pattern>/ajax*</pattern> 
+    </excludes>
+
+    <decorator name="commonLogin" page="commonLoginTemplate.jsp">
+        <pattern>/login/access*</pattern>
+        <pattern>/login/doLogin*</pattern>
+        <pattern>/login/logout*</pattern>
+    </decorator>  
+    
+    <decorator name="main" page="decorator.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+</decorators>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config />
+	
+	<!--<import resource="classpath:application-context-security.xml"/>-->
+
+	<bean id="userInf"
+		class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="proxyFactory" ref="hessianProxyFactory" />
+		<property name="serializerFactory" ref="serializerFactory" />
+		<property name="serviceUrl"
+			value="${appserver_url}/UserInf" />
+		<property name="serviceInterface" value="org.zyd.service.inf.UserInf" />
+	</bean>
+
+	<bean id="generalizeInf"
+		  class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="proxyFactory" ref="hessianProxyFactory" />
+		<property name="serializerFactory" ref="serializerFactory" />
+		<property name="serviceUrl"
+				  value="${appserver_url}/GeneralizeInf" />
+		<property name="serviceInterface" value="org.zyd.service.inf.GeneralizeInf" />
+	</bean>
+
+	<bean id="pugInf"
+		  class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="proxyFactory" ref="hessianProxyFactory" />
+		<property name="serializerFactory" ref="serializerFactory" />
+		<property name="serviceUrl"
+				  value="${appserver_url}/PugInf" />
+		<property name="serviceInterface" value="org.zyd.service.inf.PugInf" />
+	</bean>
+
+	<bean id="shapeInf"
+		  class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="proxyFactory" ref="hessianProxyFactory" />
+		<property name="serializerFactory" ref="serializerFactory" />
+		<property name="serviceUrl"
+				  value="${appserver_url}/ShapeInf" />
+		<property name="serviceInterface" value="org.zyd.service.inf.ShapeInf" />
+	</bean>
+
+	<bean id="carouselFigureInf"
+		  class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="proxyFactory" ref="hessianProxyFactory" />
+		<property name="serializerFactory" ref="serializerFactory" />
+		<property name="serviceUrl"
+				  value="${appserver_url}/CarouselFigureInf" />
+		<property name="serviceInterface" value="org.zyd.service.inf.CarouselFigureInf" />
+	</bean>
+
+	<bean id="weixinReplyContentInf"
+		  class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<property name="proxyFactory" ref="hessianProxyFactory" />
+		<property name="serializerFactory" ref="serializerFactory" />
+		<property name="serviceUrl"
+				  value="${appserver_url}/WeixinReplyContentInf" />
+		<property name="serviceInterface" value="org.zyd.service.inf.WeixinReplyContentInf" />
+	</bean>
+
+    <bean id="hessianProxyFactory" class="com.caucho.hessian.client.HessianProxyFactory" >
+        <property name="overloadEnabled" value="true" />
+    </bean>
+    
+    <bean id="serializerFactory" class="org.zyd.web.util.SerializerFactory" />
+	
+</beans>

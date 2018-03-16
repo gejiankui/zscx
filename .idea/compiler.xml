@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="zyd-appserver" />
+        <module name="zyd-common" />
+        <module name="zyd-domain" />
+        <module name="zyd-service" />
+        <module name="zyd-service-impl" />
+        <module name="zyd-store" />
+        <module name="zyd-web" />
+        <module name="zyd-webadmin" />
+        <module name="zyd-weixinapi" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="zyd-appserver" target="1.6" />
+      <module name="zyd-common" target="1.6" />
+      <module name="zyd-domain" target="1.6" />
+      <module name="zyd-parent" target="1.5" />
+      <module name="zyd-service" target="1.6" />
+      <module name="zyd-service-impl" target="1.6" />
+      <module name="zyd-store" target="1.6" />
+      <module name="zyd-web" target="1.6" />
+      <module name="zyd-webadmin" target="1.6" />
+      <module name="zyd-weixinapi" target="1.6" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zyd.store.mapper.ShapeInfoMapper" > 
+
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="org.zyd.store.entity.ShapeInfoEntity" >
+	<result column="shape_id" property="shapeId" jdbcType="INTEGER" />
+	<result column="shape_name" property="shapeName" jdbcType="VARCHAR" />
+	<result column="shape_full_spell" property="shapeFullSpell" jdbcType="VARCHAR" />
+	<result column="shape_simple_spell" property="shapeSimpleSpell" jdbcType="VARCHAR" />
+	<result column="thumb_img" property="thumbImg" jdbcType="VARCHAR" />
+	<result column="shape_img" property="shapeImg" jdbcType="VARCHAR" />
+	<result column="category_id" property="categoryId" jdbcType="INTEGER" />
+	<result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+	<result column="provider_id" property="providerId" jdbcType="INTEGER" />
+	<result column="img_provider" property="imgProvider" jdbcType="VARCHAR" />
+	<result column="introduction" property="introduction" jdbcType="VARCHAR" />
+	<result column="is_valid" property="isValid" jdbcType="INTEGER" />
+	<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	<result column="create_by" property="createBy" jdbcType="VARCHAR" />
+	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	<result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+</resultMap>
+       
+<!-- shape_info table all fields -->
+<sql id="Base_Column_List" >
+	 shape_id, shape_name, shape_full_spell, shape_simple_spell, thumb_img, shape_img, category_id, category_name, provider_id, img_provider, introduction, is_valid, create_time, create_by, update_time, update_by
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+<where>
+	<if test="shapeId != null" >
+	    and shape_id = #{shapeId, jdbcType=INTEGER}
+	</if>
+	<if test="shapeName != null and shapeName != ''" >
+		or shape_name like CONCAT('%',#{shapeName, jdbcType=VARCHAR},'%')
+	</if>
+	<if test="shapeFullSpell != null and shapeFullSpell != ''" >
+		or shape_full_spell like CONCAT('%',#{shapeFullSpell, jdbcType=VARCHAR},'%')
+	</if>
+	<if test="shapeSimpleSpell != null and shapeSimpleSpell != ''" >
+		or shape_simple_spell like CONCAT('%',#{shapeSimpleSpell, jdbcType=VARCHAR},'%')
+	</if>
+	<if test="thumbImg != null and thumbImg != ''" >
+	    and thumb_img = #{thumbImg, jdbcType=VARCHAR}
+	</if>
+	<if test="shapeImg != null and shapeImg != ''" >
+	    and shape_img = #{shapeImg, jdbcType=VARCHAR}
+	</if>
+	<if test="categoryId != null" >
+	    and category_id = #{categoryId, jdbcType=INTEGER}
+	</if>
+	 	<if test="categoryName != null and categoryName != ''" >
+	    and category_name = #{categoryName, jdbcType=VARCHAR}
+	</if>
+	 	<if test="introduction != null and introduction != ''" >
+	    and introduction = #{introduction, jdbcType=VARCHAR}
+	</if>
+	<if test="isValid != null" >
+	    and is_valid = #{isValid, jdbcType=INTEGER}
+	</if>
+	<if test="createTime != null" >
+	    and create_time = #{createTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="createBy != null and createBy != ''" >
+	    and create_by = #{createBy, jdbcType=VARCHAR}
+	</if>
+	<if test="updateTime != null" >
+	    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="updateBy != null and updateBy != ''" >
+	    and update_by = #{updateBy, jdbcType=VARCHAR}
+	</if>
+</where>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="org.zyd.store.entity.ShapeInfoEntity" >
+  	insert into shape_info(
+		shape_id,
+		shape_name,
+		shape_full_spell,
+		shape_simple_spell,
+		thumb_img,
+		shape_img,
+		category_id,
+		category_name,
+		provider_id,
+		img_provider,
+		introduction,
+		is_valid,
+		create_time,
+		create_by,
+		update_time,
+		update_by
+	) values (
+		#{shapeId, jdbcType=INTEGER},
+		#{shapeName, jdbcType=VARCHAR},
+		#{shapeFullSpell, jdbcType=VARCHAR},
+		#{shapeSimpleSpell, jdbcType=VARCHAR},
+		#{thumbImg, jdbcType=VARCHAR},
+		#{shapeImg, jdbcType=VARCHAR},
+		#{categoryId, jdbcType=INTEGER},
+		#{categoryName, jdbcType=VARCHAR},
+		#{providerId, jdbcType=INTEGER},
+		#{imgProvider, jdbcType=VARCHAR},
+		#{introduction, jdbcType=VARCHAR},
+		#{isValid, jdbcType=INTEGER},
+		#{createTime, jdbcType=TIMESTAMP},
+		#{createBy, jdbcType=VARCHAR},
+		#{updateTime, jdbcType=TIMESTAMP},
+		#{updateBy, jdbcType=VARCHAR}
+	)
+</insert>
+
+<!-- 根据所选内容更新 -->
+<update id="updateBySelective" parameterType="org.zyd.store.entity.ShapeInfoEntity" >
+	update shape_info set 
+	<trim  suffixOverrides="," >
+		<if test="shapeName != null  and shapeName != '' ">
+			shape_name = #{shapeName, jdbcType=VARCHAR},
+		</if>
+		<if test="shapeFullSpell != null  and shapeFullSpell != '' ">
+			shape_full_spell = #{shapeFullSpell, jdbcType=VARCHAR},
+		</if>
+		<if test="shapeSimpleSpell != null  and shapeSimpleSpell != '' ">
+			shape_simple_spell = #{shapeSimpleSpell, jdbcType=VARCHAR},
+		</if>
+		<if test="thumbImg != null  and thumbImg != '' ">
+			thumb_img = #{thumbImg, jdbcType=VARCHAR},
+		</if>
+		<if test="shapeImg != null  and shapeImg != '' ">
+			shape_img = #{shapeImg, jdbcType=VARCHAR},
+		</if>
+		<if test="categoryId != null  ">
+			category_id = #{categoryId, jdbcType=INTEGER},
+		</if>
+		<if test="categoryName != null  and categoryName != '' ">
+			category_name = #{categoryName, jdbcType=VARCHAR},
+		</if>
+		<if test="providerId != null  ">
+			provider_id = #{providerId, jdbcType=INTEGER},
+		</if>
+		<if test="imgProvider != null  and imgProvider != '' ">
+			img_provider = #{imgProvider, jdbcType=VARCHAR},
+		</if>
+		<if test="introduction != null  and introduction != '' ">
+			introduction = #{introduction, jdbcType=VARCHAR},
+		</if>
+		<if test="isValid != null  ">
+			is_valid = #{isValid, jdbcType=INTEGER},
+		</if>
+		<if test="createTime != null  ">
+			create_time = #{createTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="createBy != null  and createBy != '' ">
+			create_by = #{createBy, jdbcType=VARCHAR},
+		</if>
+		<if test="updateTime != null  ">
+			update_time = #{updateTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="updateBy != null  and updateBy != '' ">
+			update_by = #{updateBy, jdbcType=VARCHAR},
+		</if>
+	</trim> 
+	where shape_id = #{shapeId, jdbcType=INTEGER}
+</update>
+
+<!-- 删除 -->
+<update id="delete" parameterType="org.zyd.store.entity.ShapeInfoEntity">
+	delete from shape_info where shape_id = #{shapeId}
+</update>
+
+<!-- 查询 -->
+<select id="select" resultMap="BaseResultMap"  parameterType="org.zyd.store.term.ShapeInfoTerm">
+	select 
+    <include refid="Base_Column_List"/>
+    from shape_info 
+    <include refid="Where_Clause"/>
+	order by category_id
+</select>
+  	
+</mapper>   

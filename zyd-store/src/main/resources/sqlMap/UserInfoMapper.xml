@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zyd.store.mapper.UserInfoMapper" > 
+
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="org.zyd.store.entity.UserInfoEntity" >
+	<result column="user_id" property="userId" jdbcType="DECIMAL" />
+	<result column="user_name" property="userName" jdbcType="VARCHAR" />
+	<result column="user_full_spell" property="userFullSpell" jdbcType="VARCHAR" />
+	<result column="user_simple_spell" property="userSimpleSpell" jdbcType="VARCHAR" />
+	<result column="user_nickname" property="userNickname" jdbcType="VARCHAR" />
+	<result column="phone" property="phone" jdbcType="VARCHAR" />
+	<result column="avatar" property="avatar" jdbcType="VARCHAR" />
+	<result column="user_img" property="userImg" jdbcType="VARCHAR" />
+	<result column="user_small_img" property="userSmallImg" jdbcType="VARCHAR" />
+	<result column="gender" property="gender" jdbcType="VARCHAR" />
+	<result column="introduction" property="introduction" jdbcType="VARCHAR" />
+	<result column="birthday" property="birthday" jdbcType="VARCHAR" />
+	<result column="is_dead" property="isDead" jdbcType="INTEGER" />
+	<result column="death_time" property="deathTime" jdbcType="VARCHAR" />
+	<result column="is_title" property="isTitle" jdbcType="INTEGER" />
+	<result column="job_title" property="jobTitle" jdbcType="VARCHAR" />
+	<result column="title_pass_date" property="titlePassDate" jdbcType="VARCHAR" />
+	<result column="user_type" property="userType" jdbcType="VARCHAR" />
+	<result column="industry" property="industry" jdbcType="VARCHAR" />
+	<result column="work_unit" property="workUnit" jdbcType="VARCHAR" />
+	<result column="home_addr" property="homeAddr" jdbcType="VARCHAR" />
+	<result column="work_addr" property="workAddr" jdbcType="VARCHAR" />
+	<result column="is_valid" property="isValid" jdbcType="INTEGER" />
+	<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	<result column="create_by" property="createBy" jdbcType="VARCHAR" />
+	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	<result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+</resultMap>
+       
+<!-- user_info table all fields -->
+<sql id="Base_Column_List" >
+	 user_id, user_name, user_full_spell, user_simple_spell, user_nickname, phone, avatar, user_img, user_small_img, gender, introduction, birthday, is_dead, death_time, is_title, job_title, title_pass_date, user_type, industry, work_unit, home_addr, work_addr, is_valid, create_time, create_by, update_time, update_by
+</sql>
+<sql id="Cate_Column_List" >
+	u.user_id, u.user_name, u.user_full_spell, u.user_simple_spell, u.user_nickname, u.phone, u.avatar, u.user_img, u.user_small_img, u.gender, u.introduction, u.birthday, u.is_dead, u.death_time, u.is_title, u.job_title, u.title_pass_date, u.user_type, u.industry, u.work_unit, u.home_addr, u.work_addr, u.is_valid, u.create_time, u.create_by, u.update_time, u.update_by
+</sql>
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+<where>
+	<if test="userId != null" >
+	    and user_id = #{userId, jdbcType=DECIMAL}
+	</if>
+	<if test="userName != null and userName != ''" >
+	    or user_name like CONCAT('%',#{userName, jdbcType=VARCHAR},'%')
+	</if>
+	<if test="userFullSpell != null and userFullSpell != ''" >
+	    or user_full_spell like CONCAT('%',#{userFullSpell, jdbcType=VARCHAR},'%')
+	</if>
+	<if test="userSimpleSpell != null and userSimpleSpell != ''" >
+	    or user_simple_spell like CONCAT('%',#{userSimpleSpell, jdbcType=VARCHAR},'%')
+	</if>
+	<if test="userNickname != null and userNickname != ''" >
+	    and user_nickname = #{userNickname, jdbcType=VARCHAR}
+	</if>
+	<if test="avatar != null and avatar != ''" >
+	    and avatar = #{avatar, jdbcType=VARCHAR}
+	</if>
+	 	<if test="userImg != null and userImg != ''" >
+	    and user_img = #{userImg, jdbcType=VARCHAR}
+	</if>
+	 	<if test="gender != null and gender != ''" >
+	    and gender = #{gender, jdbcType=VARCHAR}
+	</if>
+	 	<if test="introduction != null and introduction != ''" >
+	    and introduction = #{introduction, jdbcType=VARCHAR}
+	</if>
+	<if test="birthday != null" >
+	    and birthday = #{birthday, jdbcType=VARCHAR}
+	</if>
+	<if test="deathTime != null" >
+	    and death_time = #{deathTime, jdbcType=VARCHAR}
+	</if>
+	<if test="isTitle != null" >
+	    and is_title = #{isTitle, jdbcType=INTEGER}
+	</if>
+	 	<if test="jobTitle != null and jobTitle != ''" >
+	    and job_title = #{jobTitle, jdbcType=VARCHAR}
+	</if>
+	<if test="titlePassDate != null" >
+	    and title_pass_date = #{titlePassDate, jdbcType=VARCHAR}
+	</if>
+	 	<if test="userType != null and userType != ''" >
+	    and user_type = #{userType, jdbcType=VARCHAR}
+	</if>
+	 	<if test="industry != null and industry != ''" >
+	    and industry = #{industry, jdbcType=VARCHAR}
+	</if>
+	 	<if test="workUnit != null and workUnit != ''" >
+	    and work_unit = #{workUnit, jdbcType=VARCHAR}
+	</if>
+	<if test="isValid != null" >
+	    and is_valid = #{isValid, jdbcType=INTEGER}
+	</if>
+	<if test="createTime != null" >
+	    and create_time = #{createTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="createBy != null and createBy != ''" >
+	    and create_by = #{createBy, jdbcType=VARCHAR}
+	</if>
+	<if test="updateTime != null" >
+	    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="updateBy != null and updateBy != ''" >
+	    and update_by = #{updateBy, jdbcType=VARCHAR}
+	</if>
+	order by update_time, create_time
+</where>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="org.zyd.store.entity.UserInfoEntity" >
+  	insert into user_info(
+		user_id,
+		user_name,
+		user_full_spell,
+		user_simple_spell,
+		user_nickname,
+		phone,
+		avatar,
+		user_img,
+		user_small_img,
+		gender,
+		introduction,
+		birthday,
+		is_dead,
+		death_time,
+		is_title,
+		job_title,
+		title_pass_date,
+		user_type,
+		industry,
+		work_unit,
+		home_addr,
+		work_addr,
+		is_valid,
+		create_time,
+		create_by,
+		update_time,
+		update_by
+	) values (
+		#{userId, jdbcType=DECIMAL},
+		#{userName, jdbcType=VARCHAR},
+		#{userFullSpell, jdbcType=VARCHAR},
+		#{userSimpleSpell, jdbcType=VARCHAR},
+		#{userNickname, jdbcType=VARCHAR},
+		#{phone, jdbcType=VARCHAR},
+		#{avatar, jdbcType=VARCHAR},
+		#{userImg, jdbcType=VARCHAR},
+		#{userSmallImg, jdbcType=VARCHAR},
+		#{gender, jdbcType=VARCHAR},
+		#{introduction, jdbcType=VARCHAR},
+		#{birthday, jdbcType=VARCHAR},
+		#{isDead, jdbcType=INTEGER},
+		#{deathTime, jdbcType=VARCHAR},
+		#{isTitle, jdbcType=INTEGER},
+		#{jobTitle, jdbcType=VARCHAR},
+		#{titlePassDate, jdbcType=VARCHAR},
+		#{userType, jdbcType=VARCHAR},
+		#{industry, jdbcType=VARCHAR},
+		#{workUnit, jdbcType=VARCHAR},
+		#{homeAddr, jdbcType=VARCHAR},
+		#{workAddr, jdbcType=VARCHAR},
+		#{isValid, jdbcType=INTEGER},
+		#{createTime, jdbcType=TIMESTAMP},
+		#{createBy, jdbcType=VARCHAR},
+		#{updateTime, jdbcType=TIMESTAMP},
+		#{updateBy, jdbcType=VARCHAR}
+	)
+</insert>
+
+<!-- 根据所选内容更新 -->
+<update id="updateBySelective" parameterType="org.zyd.store.entity.UserInfoEntity" >
+	update user_info set 
+	<trim  suffixOverrides="," >
+		<if test="userName != null  and userName != '' ">
+			user_name = #{userName, jdbcType=VARCHAR},
+		</if>
+		<if test="userFullSpell != null  and userFullSpell != '' ">
+			user_full_spell = #{userFullSpell, jdbcType=VARCHAR},
+		</if>
+		<if test="userSimpleSpell != null  and userSimpleSpell != '' ">
+			user_simple_spell = #{userSimpleSpell, jdbcType=VARCHAR},
+		</if>
+		<if test="userNickname != null  and userNickname != '' ">
+			user_nickname = #{userNickname, jdbcType=VARCHAR},
+		</if>
+		<if test="phone != null  and phone != '' ">
+			phone = #{phone, jdbcType=VARCHAR},
+		</if>
+		<if test="avatar != null  and avatar != '' ">
+			avatar = #{avatar, jdbcType=VARCHAR},
+		</if>
+		<if test="userImg != null  and userImg != '' ">
+			user_img = #{userImg, jdbcType=VARCHAR},
+		</if>
+		<if test="gender != null  and gender != '' ">
+			gender = #{gender, jdbcType=VARCHAR},
+		</if>
+		<if test="introduction != null  and introduction != '' ">
+			introduction = #{introduction, jdbcType=VARCHAR},
+		</if>
+		<if test="birthday != null and birthday != '' ">
+			birthday = #{birthday, jdbcType=VARCHAR},
+		</if>
+		<if test="isDead != null  ">
+			is_dead = #{isDead, jdbcType=INTEGER},
+		</if>
+		<if test="deathTime != null and deathTime != '' ">
+			death_time = #{deathTime, jdbcType=VARCHAR},
+		</if>
+		<if test="isTitle != null  ">
+			is_title = #{isTitle, jdbcType=INTEGER},
+		</if>
+		<if test="jobTitle != null  and jobTitle != '' ">
+			job_title = #{jobTitle, jdbcType=VARCHAR},
+		</if>
+		<if test="titlePassDate != null  and titlePassDate != '' ">
+			title_pass_date = #{titlePassDate, jdbcType=VARCHAR},
+		</if>
+		<if test="userType != null  and userType != '' ">
+			user_type = #{userType, jdbcType=VARCHAR},
+		</if>
+		<if test="industry != null  and industry != '' ">
+			industry = #{industry, jdbcType=VARCHAR},
+		</if>
+		<if test="workUnit != null  and workUnit != '' ">
+			work_unit = #{workUnit, jdbcType=VARCHAR},
+		</if>
+		<if test="homeAddr != null  and homeAddr != '' ">
+			home_addr = #{homeAddr, jdbcType=VARCHAR},
+		</if>
+		<if test="workAddr != null  and workAddr != '' ">
+			work_addr = #{workAddr, jdbcType=VARCHAR},
+		</if>
+		<if test="isValid != null  ">
+			is_valid = #{isValid, jdbcType=INTEGER},
+		</if>
+		<if test="createTime != null  ">
+			create_time = #{createTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="createBy != null  and createBy != '' ">
+			create_by = #{createBy, jdbcType=VARCHAR},
+		</if>
+		<if test="updateTime != null  ">
+			update_time = #{updateTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="updateBy != null  and updateBy != '' ">
+			update_by = #{updateBy, jdbcType=VARCHAR},
+		</if>
+	</trim> 
+	where user_id = #{userId, jdbcType=DECIMAL}
+</update>
+
+<!-- 删除 -->
+<update id="delete" parameterType="org.zyd.store.entity.UserInfoEntity">
+	delete from user_info where user_id = #{userId}
+</update>
+
+<!-- 查询 -->
+<select id="select" resultMap="BaseResultMap"  parameterType="org.zyd.store.term.UserInfoTerm">
+	select 
+    <include refid="Base_Column_List"/>
+    from user_info
+    <include refid="Where_Clause"/>
+</select>
+
+<!-- 查询 -->
+<select id="selectByKeys" resultMap="BaseResultMap"  parameterType="java.util.ArrayList">
+	select
+	<include refid="Base_Column_List"/>
+	from user_info
+	where user_id in
+	<foreach item="tempId" collection="list" open="(" separator="," close=")">
+		#{tempId}
+	</foreach>
+</select>
+
+<!-- 查询 -->
+<select id="selectByCategoryId" resultMap="BaseResultMap"  parameterType="java.lang.Integer">
+	select
+	<include refid="Cate_Column_List"/>
+	from user_info u left join category_user cu on cu.user_id = u.user_id
+	where cu.category_id = #{categoryId}
+	order by update_time, create_time
+</select>
+
+</mapper>   

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <bean id="userInfoConvertor" class="org.zyd.service.convertor.UserInfoConvertor" />
+    <bean id="generalizeConvertor" class="org.zyd.service.convertor.GeneralizeConvertor" />
+	<bean id="pugInfoConvertor" class="org.zyd.service.convertor.PugInfoConvertor" />
+	<bean id="shapeInfoConvertor" class="org.zyd.service.convertor.ShapeInfoConvertor" />
+	<bean id="carouselFigureConvertor" class="org.zyd.service.convertor.CarouselFigureConvertor" />
+	<bean id="referencesInfoConvertor" class="org.zyd.service.convertor.ReferencesInfoConvertor" />
+	<bean id="labelInfoConvertor" class="org.zyd.service.convertor.LabelInfoConvertor" />
+	<bean id="weixinReplyContentConvertor" class="org.zyd.service.convertor.WeixinReplyContentConvertor" />
+</beans>

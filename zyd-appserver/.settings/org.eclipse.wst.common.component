@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="zyd-appserver">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="zyd-service-impl-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/zyd-service-impl/zyd-service-impl">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="zyd-domain-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/zyd-domain/zyd-domain">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="zyd-common-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/zyd-common/zyd-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="zyd-store-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/zyd-store/zyd-store">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="zyd-service-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/zyd-service/zyd-service">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="zyd-appserver"/>
+        <property name="java-output-path" value="/zyd-appserver/target/classes"/>
+    </wb-module>
+</project-modules>

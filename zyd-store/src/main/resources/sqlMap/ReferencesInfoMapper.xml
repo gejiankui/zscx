@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zyd.store.mapper.ReferencesInfoMapper" > 
+
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="org.zyd.store.entity.ReferencesInfoEntity" >
+	<result column="ref_id" property="refId" jdbcType="INTEGER" />
+	<result column="ref_name" property="refName" jdbcType="VARCHAR" />
+	<result column="author" property="author" jdbcType="VARCHAR" />
+	<result column="introduction" property="introduction" jdbcType="VARCHAR" />
+	<result column="publication_date" property="publicationDate" jdbcType="DATE" />
+	<result column="is_valid" property="isValid" jdbcType="INTEGER" />
+	<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	<result column="create_by" property="createBy" jdbcType="VARCHAR" />
+	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	<result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+</resultMap>
+       
+<!-- references_info table all fields -->
+<sql id="Base_Column_List" >
+	 ref_id, ref_name, author, introduction, publication_date, is_valid, create_time, create_by, update_time, update_by
+</sql>
+   
+<!-- 查询条件 -->
+<sql id="Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="refId != null" >
+	    and ref_id = #{refId, jdbcType=INTEGER}
+	</if>
+	 	<if test="refName != null and refName != ''" >
+	    and ref_name = #{refName, jdbcType=VARCHAR}
+	</if>
+	 	<if test="author != null and author != ''" >
+	    and author = #{author, jdbcType=VARCHAR}
+	</if>
+	 	<if test="introduction != null and introduction != ''" >
+	    and introduction = #{introduction, jdbcType=VARCHAR}
+	</if>
+	<if test="publicationDate != null" >
+	    and publication_date = #{publicationDate, jdbcType=DATE}
+	</if>
+	<if test="isValid != null" >
+	    and is_valid = #{isValid, jdbcType=INTEGER}
+	</if>
+	<if test="createTime != null" >
+	    and create_time = #{createTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="createBy != null and createBy != ''" >
+	    and create_by = #{createBy, jdbcType=VARCHAR}
+	</if>
+	<if test="updateTime != null" >
+	    and update_time = #{updateTime, jdbcType=TIMESTAMP}
+	</if>
+	 	<if test="updateBy != null and updateBy != ''" >
+	    and update_by = #{updateBy, jdbcType=VARCHAR}
+	</if>
+</trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="org.zyd.store.entity.ReferencesInfoEntity" >
+  	insert into references_info(
+		ref_id,
+		ref_name,
+		author,
+		introduction,
+		publication_date,
+		is_valid,
+		create_time,
+		create_by,
+		update_time,
+		update_by
+	) values (
+		#{refId, jdbcType=INTEGER},
+		#{refName, jdbcType=VARCHAR},
+		#{author, jdbcType=VARCHAR},
+		#{introduction, jdbcType=VARCHAR},
+		#{publicationDate, jdbcType=DATE},
+		#{isValid, jdbcType=INTEGER},
+		#{createTime, jdbcType=TIMESTAMP},
+		#{createBy, jdbcType=VARCHAR},
+		#{updateTime, jdbcType=TIMESTAMP},
+		#{updateBy, jdbcType=VARCHAR}
+	)
+</insert>
+
+<!-- 根据所选内容更新 -->
+<update id="updateBySelective" parameterType="org.zyd.store.entity.ReferencesInfoEntity" >
+	update references_info set 
+	<trim  suffixOverrides="," >
+		<if test="refName != null  and refName != '' ">
+			ref_name = #{refName, jdbcType=VARCHAR},
+		</if>
+		<if test="author != null  and author != '' ">
+			author = #{author, jdbcType=VARCHAR},
+		</if>
+		<if test="introduction != null  and introduction != '' ">
+			introduction = #{introduction, jdbcType=VARCHAR},
+		</if>
+		<if test="publicationDate != null  ">
+			publication_date = #{publicationDate, jdbcType=DATE},
+		</if>
+		<if test="isValid != null  ">
+			is_valid = #{isValid, jdbcType=INTEGER},
+		</if>
+		<if test="createTime != null  ">
+			create_time = #{createTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="createBy != null  and createBy != '' ">
+			create_by = #{createBy, jdbcType=VARCHAR},
+		</if>
+		<if test="updateTime != null  ">
+			update_time = #{updateTime, jdbcType=TIMESTAMP},
+		</if>
+		<if test="updateBy != null  and updateBy != '' ">
+			update_by = #{updateBy, jdbcType=VARCHAR},
+		</if>
+	</trim> 
+	where ref_id = #{refId, jdbcType=INTEGER}
+</update>
+
+<!-- 删除 -->
+<update id="delete" parameterType="org.zyd.store.entity.ReferencesInfoEntity">
+	delete from references_info where ref_id = #{refId}
+</update>
+
+<!-- 查询 -->
+<select id="select" resultMap="BaseResultMap"  parameterType="org.zyd.store.term.ReferencesInfoTerm">
+	select 
+    <include refid="Base_Column_List"/>
+    from references_info 
+    <include refid="Where_Clause"/>
+</select>
+
+<!-- 查询 -->
+<select id="selectByKeys" resultMap="BaseResultMap"  parameterType="java.util.ArrayList">
+	select
+	<include refid="Base_Column_List"/>
+	from references_info
+	where ref_id in
+	<foreach item="tempId" collection="list" open="(" separator="," close=")">
+		#{tempId}
+	</foreach>
+</select>
+
+</mapper>   
